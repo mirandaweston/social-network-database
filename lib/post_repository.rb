@@ -49,6 +49,15 @@ class PostRepository
     return nil
   end
 
+  def update(post)
+    sql = 'UPDATE posts SET title = $1, content = $2, number_of_views = $3, user_id = $4;'
+    params = [post.title, post.content, post.number_of_views, post.user_id]
+
+    DatabaseConnection.exec_params(sql,params)
+
+    return nil
+  end
+
   def delete(id)
     sql = 'DELETE FROM posts WHERE id = $1;'
     params = [id]
