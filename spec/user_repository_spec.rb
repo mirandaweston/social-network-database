@@ -49,6 +49,20 @@ RSpec.describe UserRepository do
     expect(all_users.last.username).to eq 'user_three'
   end
 
+  it "updates a user from the database" do
+    repo = UserRepository.new
+
+    updated_user = double :user, id:1, username: 'updated_user', email_address: 'updated_user@gmail.com'
+
+    repo.update(updated_user)
+    
+    user = repo.find(1)
+
+    expect(updated_user.id.to_i).to eq 1
+    expect(updated_user.username).to eq 'updated_user'
+    expect(updated_user.email_address).to eq 'updated_user@gmail.com'
+  end
+
   it "deletes a user from the database" do
     repo = UserRepository.new
 
