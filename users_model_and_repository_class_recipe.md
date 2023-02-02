@@ -1,4 +1,4 @@
-# Users Model and Repository Classes Design Recipe
+# User Model and Repository Classes Design Recipe
 
 
 ## 1. Designing and creating the Table
@@ -197,6 +197,7 @@ This is so you get a fresh table contents every time you run the test suite.
 
 # file: spec/user_repository_spec.rb
 
+RSpec.describe UserRepository do
   def reset_users_table
     seed_sq1 = File.read('spec/seeds_users.sql')
     connection = PG.connect({ host: '127.0.0.1', dbname: 'social_network_test' })
@@ -208,6 +209,7 @@ This is so you get a fresh table contents every time you run the test suite.
   end
 
   # (tests will go here).
+end
 ```
 
 ## 8. Test-driving and implementing the Repository class behaviour
