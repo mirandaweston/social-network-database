@@ -59,6 +59,22 @@ RSpec.describe PostRepository do
     expect(all_posts.last.user_id.to_i).to eq 2
   end
 
+  it "updates a post from the database" do
+    repo = PostRepository.new
+
+    updated_post = double :post, id:1, title:'Update', content:'Updating this post', number_of_views:50, user_id:1
+
+    repo.update(updated_post)
+    
+    post = repo.find(1)
+
+    expect(updated_post.id.to_i).to eq 1
+    expect(updated_post.title).to eq 'Update'
+    expect(updated_post.content).to eq 'Updating this post'
+    expect(updated_post.number_of_views.to_i).to eq 50
+    expect(updated_post.user_id.to_i).to eq 1
+  end
+
   it "deletes a post from the database" do
     repo = PostRepository.new
 
